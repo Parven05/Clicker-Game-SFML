@@ -1,20 +1,88 @@
-// Clicker-Game.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <SFML/Graphics.hpp>
+#include <string>
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    // Declare constants
+
+    sf::ContextSettings settings;
+    sf::Event event;
+    sf::RenderWindow window;
+    sf::CircleShape circle(150);
+    sf::Mouse mouse;
+    sf::Color color;
+    sf::Text text;
+    sf::Font font;
+
+    settings.antialiasingLevel = 8;
+
+    // Window
+    window.create(sf::VideoMode(500, 500), "Click Game", sf::Style::Default, settings);
+    window.setVerticalSyncEnabled(true);
+    window.setFramerateLimit(60);
+
+    // Circle position
+    circle.setPosition(100, 100);
+    sf::Vector2f circlePosition = circle.getPosition() + sf::Vector2f(circle.getRadius(), circle.getRadius());
+
+    //add Text
+    if (!font.loadFromFile("Montserrat.ttf"))
+    {
+        std::cout << "Font not set" << std::endl;
+    }
+
+    text.setFont(font);
+    text.setString("Score: 0");
+    text.setFillColor(color.Yellow);
+    text.setCharacterSize(50);
+    text.setStyle(text.Bold);
+    text.setPosition(145, 20);
+
+    // score initialize
+    int scoreint = 0;
+
+    while (window.isOpen())
+    {
+        // Mouse position
+        sf::Vector2i mousePositionint = mouse.getPosition(window);
+        sf::Vector2f mousePosition = static_cast<sf::Vector2f>(mousePositionint);
+
+        // Dot Product
+        sf::Vector2f toMouseVector = mousePosition - circlePosition; // From circle to mouse vector
+        float dotVector = toMouseVector.x * toMouseVector.x + toMouseVector.y * toMouseVector.y;
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+
+            if (mouse.isButtonPressed(mouse.Left))
+            {
+                if (dotVector <= circle.getRadius() * circle.getRadius())
+                {
+                    circle.setFillColor(color.Red);
+                    scoreint++;
+                    text.setString("Score: " + std::to_string(scoreint));
+                }
+            }
+            else
+            {
+                circle.setFillColor(color.White);
+                // text.setString("Hmm");
+            }
+
+
+        }
+
+
+        window.clear();
+
+        window.draw(text);
+        // write code here
+        window.draw(circle);
+        window.display();
+    }
+
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
