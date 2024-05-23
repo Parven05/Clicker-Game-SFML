@@ -1,7 +1,11 @@
+// Library
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <string>
+
+// Class
+#include "Button.cpp"
 
 int main()
 {   
@@ -15,23 +19,17 @@ int main()
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);
 
-    // Circle shape
-    sf::Color color;
-    sf::CircleShape circle;
-    circle.setRadius(150);
-    circle.setPosition(100, 100);
-    sf::Vector2f circlePosition = circle.getPosition() + sf::Vector2f(circle.getRadius(), circle.getRadius());
-    bool isPressed = false;
-
     // Font & Text
-    sf::Font font;
     sf::Text text;
-    if (!font.loadFromFile("Montserrat-Medium.ttf")) return -1;
+    sf::Font font;
+    sf::Color color;
+    if (!font.loadFromFile("Montserrat-Medium.ttf")) throw std::runtime_error("Failed to load font");
     text.setFont(font);
-    text.setString("Score: 0");
-    text.setFillColor(color.Black);
+    text.setString("Score: ");
+    text.setFillColor(color);
     text.setCharacterSize(40);
-    text.setPosition(162, 20);
+    text.setPosition(160,25);
+
     int scoreint = 0;
 
     // Texture & Sprite
@@ -43,13 +41,16 @@ int main()
     background.setSmooth(true);
     button.setSmooth(true);
     backgroundSprite.setTexture(background);
-    circle.setTexture(&button);
 
     // Sound
     sf::SoundBuffer buffer;
     sf::Sound clickSound;
     if (!buffer.loadFromFile("Click.wav")) return -1;
     clickSound.setBuffer(buffer);    
+
+    Button buttonClick(150, sf::Vector2f(100, 100), button);
+
+    bool isPressed = false;
 
     while (window.isOpen())
     {
@@ -67,21 +68,22 @@ int main()
                 sf::Vector2f mousePosition = static_cast<sf::Vector2f>(mousePositionint);
 
                 // Dot Product
-                sf::Vector2f toMouseVector = mousePosition - circlePosition; // From circle to mouse vector
+                sf::Vector2f toMouseVector = mousePosition - buttonClick.GetPosition(); // From circle to mouse vector
                 float dotVector = toMouseVector.x * toMouseVector.x + toMouseVector.y * toMouseVector.y;
 
-                if (dotVector <= circle.getRadius() * circle.getRadius())
+                if (dotVector <= buttonClick.GetRadius() * buttonClick.GetRadius())
                 {
-                    circle.setFillColor(color.Red);
+                    buttonClick.SetColor(color.Red);
                     clickSound.play();
                     isPressed = true;
                     scoreint++;
                     text.setString("Score: " + std::to_string(scoreint));
                 }
             }
+
             else
             {
-                circle.setFillColor(color.Green);
+                buttonClick.SetColor(color.Green);
                 isPressed = false;               
             }
 
@@ -90,7 +92,7 @@ int main()
         window.clear(sf::Color(238, 123, 104));
 
         window.draw(backgroundSprite);
-        window.draw(circle);
+        buttonClick.ButtonDraw(window);
         window.draw(text);
         window.display();
     }

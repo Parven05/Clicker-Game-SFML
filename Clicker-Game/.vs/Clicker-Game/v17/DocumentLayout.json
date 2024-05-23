@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{BE49E52F-E65A-4D1D-B342-5A2C4DAABEDE}|Clicker-Game\\Clicker-Game.vcxproj|C:\\Users\\User\\source\\repos\\Clicker-Game-SFML\\Clicker-Game\\Clicker-Game\\Clicker-Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{BE49E52F-E65A-4D1D-B342-5A2C4DAABEDE}|Clicker-Game\\Clicker-Game.vcxproj|solutionrelative:Clicker-Game\\Clicker-Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE49E52F-E65A-4D1D-B342-5A2C4DAABEDE}|Clicker-Game\\Clicker-Game.vcxproj|C:\\Users\\User\\source\\repos\\Clicker-Game-SFML\\Clicker-Game\\Clicker-Game\\Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BE49E52F-E65A-4D1D-B342-5A2C4DAABEDE}|Clicker-Game\\Clicker-Game.vcxproj|solutionrelative:Clicker-Game\\Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Button.cpp",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Clicker-Game-SFML\\Clicker-Game\\Clicker-Game\\Button.cpp",
+              "RelativeDocumentMoniker": "Clicker-Game\\Button.cpp",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Clicker-Game-SFML\\Clicker-Game\\Clicker-Game\\Button.cpp",
+              "RelativeToolTip": "Clicker-Game\\Button.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-23T06:47:13.353Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,9 +41,9 @@
               "RelativeDocumentMoniker": "Clicker-Game\\Clicker-Game.cpp",
               "ToolTip": "C:\\Users\\User\\source\\repos\\Clicker-Game-SFML\\Clicker-Game\\Clicker-Game\\Clicker-Game.cpp",
               "RelativeToolTip": "Clicker-Game\\Clicker-Game.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAEAAAA",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAAC0AAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-05-22T13:04:13.687Z",
+              "WhenOpened": "2024-05-23T04:45:58.2Z",
               "EditorCaption": ""
             }
           ]
