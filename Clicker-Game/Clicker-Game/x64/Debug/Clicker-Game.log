@@ -1,2 +1,5 @@
-﻿  Clicker-Game.cpp
-  Clicker-Game.vcxproj -> C:\Users\User\source\repos\Clicker-Game-SFML\Clicker-Game\x64\Debug\Clicker-Game.exe
+﻿  Button.cpp
+  Clicker-Game.cpp
+  Generating Code...
+  LINK : C:\Users\Parven\source\repos\Clicker-Game-SFML\Clicker-Game\x64\Debug\Clicker-Game.exe not found or not built by the last incremental link; performing full link
+  Clicker-Game.vcxproj -> C:\Users\Parven\source\repos\Clicker-Game-SFML\Clicker-Game\x64\Debug\Clicker-Game.exe
