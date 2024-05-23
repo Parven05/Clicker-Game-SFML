@@ -16,8 +16,8 @@ int main()
     window.setFramerateLimit(60);
 
     // Circle shape
-    sf::CircleShape circle;
     sf::Color color;
+    sf::CircleShape circle;
     circle.setRadius(150);
     circle.setPosition(100, 100);
     sf::Vector2f circlePosition = circle.getPosition() + sf::Vector2f(circle.getRadius(), circle.getRadius());
