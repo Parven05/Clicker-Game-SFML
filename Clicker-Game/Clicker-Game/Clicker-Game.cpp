@@ -4,87 +4,62 @@
 #include <string>
 
 int main()
-{
-    // Declare constants
-
+{   
+    // Settings
     sf::ContextSettings settings;
-    sf::Event event;
-    sf::RenderWindow window;
-    sf::CircleShape circle(150);
-    sf::Mouse mouse;
-    sf::Color color;
-    sf::Text text;
-    sf::Font font;
-
-    sf::Sprite backgroundSprite;
-    sf::Texture background;
-    sf::Texture button;
-
-     sf::SoundBuffer buffer;
-     sf::Sound clickSound;
-
     settings.antialiasingLevel = 8;
 
     // Window
+    sf::RenderWindow window;
     window.create(sf::VideoMode(500, 500), "Click Game", sf::Style::Titlebar | sf::Style::Close, settings);
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);
 
-    // Circle position
+    // Circle shape
+    sf::CircleShape circle;
+    sf::Color color;
+    circle.setRadius(150);
     circle.setPosition(100, 100);
     sf::Vector2f circlePosition = circle.getPosition() + sf::Vector2f(circle.getRadius(), circle.getRadius());
+    bool isPressed = false;
 
-    // add Text
-    if (!font.loadFromFile("Montserrat-Medium.ttf"))
-    {
-        std::cout << "Font not set" << std::endl;
-    }
-
-    // add texture
-    if (!background.loadFromFile("Background.jpg"))
-    {
-        std::cout << "Texture not set" << std::endl;
-    }
-
-
-    if (!button.loadFromFile("Button.png"))
-    {
-        std::cout << "Texture not set" << std::endl;
-    }
-
-    // add sound
-    if (!buffer.loadFromFile("Click.wav"))
-    {
-        std::cout << "Sound not set" << std::endl;
-    }
-
+    // Font & Text
+    sf::Font font;
+    sf::Text text;
+    if (!font.loadFromFile("Montserrat-Medium.ttf")) return -1;
     text.setFont(font);
     text.setString("Score: 0");
     text.setFillColor(color.Black);
     text.setCharacterSize(40);
-    //text.setStyle(text.Bold);
     text.setPosition(162, 20);
-
-    // score initialize
     int scoreint = 0;
 
-    // set texture
+    // Texture & Sprite
+    sf::Sprite backgroundSprite;
+    sf::Texture background;
+    sf::Texture button;
+    if (!background.loadFromFile("Background.jpg")) return -1;
+    if (!button.loadFromFile("Button.png")) return -1;
+    background.setSmooth(true);
     button.setSmooth(true);
     backgroundSprite.setTexture(background);
     circle.setTexture(&button);
 
-    // set sound
-    clickSound.setBuffer(buffer);
-
-    bool isPressed = false;
+    // Sound
+    sf::SoundBuffer buffer;
+    sf::Sound clickSound;
+    if (!buffer.loadFromFile("Click.wav")) return -1;
+    clickSound.setBuffer(buffer);    
 
     while (window.isOpen())
     {
+        sf::Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 window.close();
 
+            sf::Mouse mouse;
             if (mouse.isButtonPressed(mouse.Left) && isPressed == false)
             {
                 // Mouse position
@@ -107,23 +82,17 @@ int main()
             else
             {
                 circle.setFillColor(color.Green);
-                isPressed = false;
-                // text.setString("Hmm");
+                isPressed = false;               
             }
-
 
         }
 
-
         window.clear(sf::Color(238, 123, 104));
 
-        // write code here
-       // window.draw(button);
         window.draw(backgroundSprite);
         window.draw(circle);
         window.draw(text);
         window.display();
     }
-
     return 0;
 }
